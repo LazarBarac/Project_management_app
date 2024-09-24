@@ -11,7 +11,7 @@ export default function CreateProject({ className }) {
       <label className="mt-3 text-xl font-semibold text-stone-500">
         Select a project or get started with a new one
       </label>
-      <button className="w-48 h-14 bg-neutral-800 mt-8 rounded-xl text-lg text-neutral-400 font-semibold">
+      <button className="w-48 h-14 bg-neutral-800 mt-8 rounded-lg text-lg text-neutral-400 font-semibold">
         Create new project
       </button>
     </div>
