@@ -1,0 +1,23 @@
+.datePickerStyle {
+  width: 100%;
+  background-color: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.react-date-picker__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+.react-date-picker__clear-button {
+  display: none;
+}
+
+.datePickerStyle button {
+}
+
+.datePickerStyle input {
+  background-color: transparent;
+}
