@@ -1,7 +1,10 @@
 import React from "react";
 import imgNoProjects from "../assets/no-projects.png";
 
-export default function StartingPageCreateProject({ className, openModal }) {
+export default function StartingPageCreateProject({
+  className,
+  setCreateProject,
+}) {
   return (
     <div className={className}>
       <img src={imgNoProjects} alt="no-projects" className="w-20 mt-8" />
@@ -12,7 +15,9 @@ export default function StartingPageCreateProject({ className, openModal }) {
         Select a project or get started with a new one
       </label>
       <button
-        onClick={openModal}
+        onClick={() => {
+          setCreateProject(true);
+        }}
         className="w-48 h-14 bg-neutral-800 mt-8 rounded-lg text-lg text-neutral-400 font-semibold"
       >
         Create new project
