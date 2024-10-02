@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EditProject({}) {
+export default function EditProject({ filteredListItem }) {
   const h2Styling = "text-2xl font-bold";
   const listItemStyle = "px-4 py-4 font-medium";
   const inputStyle =

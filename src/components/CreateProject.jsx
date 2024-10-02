@@ -27,7 +27,7 @@ export default function CreateProject({
         <button
           onClick={() => {
             addItem(titleRef.current.value);
-            console.log(titleRef.current.value);
+            // console.log(titleRef.current.value);
             titleRef.current.value = "";
           }}
           className="font-semibold text-lg text-white bg-black py-2 px-8 rounded-lg"

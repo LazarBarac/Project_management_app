@@ -1,5 +1,5 @@
 import StartingPageCreateProject from "./components/StartingPageCreateProject";
-import Drawer from "./components/Drawer";
+import Sidebar from "./components/Sidebar";
 import { createPortal } from "react-dom";
 
 import { useState } from "react";
@@ -18,11 +18,17 @@ function App() {
   //State for displaying CreateProject Section
   const [createProject, setCreateProject] = useState(false);
 
+  const [editTask, setEditTask] = useState(false);
+
   //STA DA RADIM SA OVIM
   const [listItems, setListItems] = useState([]);
+  const filteredListItem = listItems.filter(
+    (listItem) => listItem.trim() !== ""
+  );
 
   function addItem(listItem) {
-    setListItems((prevItems) => [...prevItems, listItem]);
+    if (listItem !== "" || listItem !== " ")
+      setListItems((prevItems) => [...prevItems, listItem]);
   }
 
   // const [editTask, setEditTask] = useState(true);
@@ -34,10 +40,10 @@ function App() {
     <div className="flex w-full flex-col h-screen">
       <div className="w-full bg-transparent h-20"></div>
       <main className="flex flex-row h-full">
-        <Drawer
-          listItems={listItems}
+        <Sidebar
           setCreateProject={setCreateProject}
-          className="container flex flex-col w-1/4 justify-start items-left pt-14 gap-4 bg-black rounded-r-xl pl-10"
+          setEditTask={setEditTask}
+          filteredListItem={filteredListItem}
         />
         {createProject ? (
           <CreateProject
@@ -46,6 +52,8 @@ function App() {
             handleChange={handleChange}
             setCreateProject={setCreateProject}
           />
+        ) : editTask ? (
+          <EditProject filteredListItem={filteredListItem} />
         ) : (
           <StartingPageCreateProject
             setCreateProject={setCreateProject}
