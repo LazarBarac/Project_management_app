@@ -34,7 +34,7 @@ export default function Sidebar({
                 setEditTask(true);
                 setCreateProject(false);
               }}
-            >{`- ${listItem}`}</button>
+            >{`- ${listItem.title}`}</button>
           </li>
         ))}
       </ul>

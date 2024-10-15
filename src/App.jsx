@@ -1,8 +1,8 @@
 import StartingPageCreateProject from "./components/StartingPageCreateProject";
 import Sidebar from "./components/Sidebar";
 import { createPortal } from "react-dom";
+import React, { useRef, useState } from "react";
 
-import { useState } from "react";
 import CreateProject from "./components/CreateProject";
 import EditProject from "./components/EditProject";
 
@@ -21,20 +21,38 @@ function App() {
   const [editTask, setEditTask] = useState(false);
 
   //STA DA RADIM SA OVIM
-  const [listItems, setListItems] = useState([]);
-  const filteredListItem = listItems.filter(
-    (listItem) => listItem.trim() !== ""
-  );
+  const [listItems, setListItems] = useState([
+    {
+      title: "",
+      description: "",
+      // date: "",
+    },
+  ]);
 
-  function addItem(listItem) {
-    if (listItem !== "" || listItem !== " ")
-      setListItems((prevItems) => [...prevItems, listItem]);
+  function addItem(listItemTitle, listItemDescription /*listItemDate*/) {
+    if (listItemTitle !== "" || listItemDescription !== "") {
+      const newItem = {
+        title: listItemTitle,
+        description: listItemDescription,
+      };
+
+      setListItems([...listItems, newItem]);
+      // [date]: listItemDate,
+    }
   }
+
+  const filteredListItem = listItems.filter(
+    (listItem) => listItem.title.trim() !== ""
+  );
 
   // const [editTask, setEditTask] = useState(true);
   // function showEditTask() {
   //   setEditTask((wasEditTask) => !wasEditTask);
   // }
+
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const dateRef = useRef();
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -51,6 +69,9 @@ function App() {
             input={input}
             handleChange={handleChange}
             setCreateProject={setCreateProject}
+            titleRef={titleRef}
+            descriptionRef={descriptionRef}
+            dateRef={dateRef}
           />
         ) : editTask ? (
           <EditProject filteredListItem={filteredListItem} />

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { forwardRef, useRef, useState } from "react";
 import DatePicker from "react-date-picker";
 import "./CreateProject.css";
 
@@ -7,8 +7,10 @@ export default function CreateProject({
   input,
   handleChange,
   addItem,
+  titleRef,
+  descriptionRef,
+  dateRef,
 }) {
-  const titleRef = useRef();
   const [selectedDate, setSelectedDate] = useState("");
   const inputStyle =
     "bg-stone-300 border-4 border-t-0 border-x-0 border-neutral-400 h-10 mb-8 pl-4 text-wrap";
@@ -26,9 +28,14 @@ export default function CreateProject({
         </button>
         <button
           onClick={() => {
-            addItem(titleRef.current.value);
+            addItem(
+              titleRef.current.value,
+              descriptionRef.current.value
+              // dateRef.current.value
+            );
             // console.log(titleRef.current.value);
             titleRef.current.value = "";
+            descriptionRef.current.value = "";
           }}
           className="font-semibold text-lg text-white bg-black py-2 px-8 rounded-lg"
         >
@@ -49,6 +56,7 @@ export default function CreateProject({
         <textarea
           name="descriptionInput"
           type="text"
+          ref={descriptionRef}
           className={inputStyle + " h-20 pt-2"}
           onChange={handleChange}
           value={input.value}
@@ -62,6 +70,7 @@ export default function CreateProject({
         <DatePicker
           calendarIcon
           className="datePickerStyle"
+          // ref={dateRef}
           selected={selectedDate}
           onChange={(date) => setSelectedDate(date)}
         />
