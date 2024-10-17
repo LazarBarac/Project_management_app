@@ -21,19 +21,22 @@ function App() {
   const [editTask, setEditTask] = useState(false);
 
   //STA DA RADIM SA OVIM
-  const [listItems, setListItems] = useState([
-    {
-      title: "",
-      description: "",
-      // date: "",
-    },
-  ]);
+  const [listItems, setListItems] = useState([]);
+
+  //Picking sidebar task
+  const [selectedItem, setSelectedItem] = useState();
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+  };
 
   function addItem(listItemTitle, listItemDescription /*listItemDate*/) {
     if (listItemTitle !== "" || listItemDescription !== "") {
       const newItem = {
         title: listItemTitle,
         description: listItemDescription,
+        id: Math.random(),
+        tasks: [],
       };
 
       setListItems([...listItems, newItem]);
@@ -53,6 +56,7 @@ function App() {
   const titleRef = useRef();
   const descriptionRef = useRef();
   const dateRef = useRef();
+  const taskRef = useRef();
 
   return (
     <div className="flex w-full flex-col h-screen">
@@ -62,11 +66,11 @@ function App() {
           setCreateProject={setCreateProject}
           setEditTask={setEditTask}
           filteredListItem={filteredListItem}
+          handleItemClick={handleItemClick}
         />
         {createProject ? (
           <CreateProject
             addItem={addItem}
-            input={input}
             handleChange={handleChange}
             setCreateProject={setCreateProject}
             titleRef={titleRef}
@@ -74,7 +78,13 @@ function App() {
             dateRef={dateRef}
           />
         ) : editTask ? (
-          <EditProject filteredListItem={filteredListItem} />
+          <EditProject
+            selectedItem={selectedItem}
+            handleChange={handleChange}
+            listItems={listItems}
+            taskRef={taskRef}
+            setListItems={setListItems}
+          />
         ) : (
           <StartingPageCreateProject
             setCreateProject={setCreateProject}

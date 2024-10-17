@@ -4,7 +4,7 @@ import "./CreateProject.css";
 
 export default function CreateProject({
   setCreateProject,
-  input,
+
   handleChange,
   addItem,
   titleRef,
@@ -50,7 +50,6 @@ export default function CreateProject({
           type="text"
           className={inputStyle}
           onChange={handleChange}
-          value={input.value}
         />
         <label className={labelStyle}>DESCRIPTION</label>
         <textarea
@@ -59,7 +58,6 @@ export default function CreateProject({
           ref={descriptionRef}
           className={inputStyle + " h-20 pt-2"}
           onChange={handleChange}
-          value={input.value}
         />
         <label className={labelStyle}>DUE DATE</label>
         {/* <div
